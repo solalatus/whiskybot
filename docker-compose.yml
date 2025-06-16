@@ -1,0 +1,16 @@
+
+version: "3.8"
+services:
+  app:
+    build: .
+    env_file: .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+  redis:
+    image: redis:7
+    volumes:
+      - redis-data:/data
+volumes:
+  redis-data:
