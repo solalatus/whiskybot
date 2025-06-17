@@ -1,5 +1,6 @@
-
-"""Create or update the `Whisky` class to use Snowflake m‑v1.5 embeddings.
+#!/usr/bin/env python3
+"""
+Create or replace the `Whisky` class with Snowflake m-v1.5 embeddings.
 
 Usage:
     python schema.py
@@ -7,7 +8,7 @@ Requires:
     - WEAVIATE_URL
     - WEAVIATE_API_KEY
 """
-import os, weaviate, json, sys
+import os, weaviate, sys, json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -24,25 +25,21 @@ CLASS = {
     "moduleConfig": {
         "text2vec-weaviate": {
             "model": "Snowflake/snowflake-arctic-embed-m-v1.5",
-            # Uncomment below if you want 256‑dim truncation instead of 768
-            # "dimensions": 256
+            "vectorizeClassName": False,
         }
     },
+    # Only a starter set; dynamic schema is still on, so extra props appear
     "properties": [
         {"name": "name",        "dataType": ["text"]},
         {"name": "tasteNotes",  "dataType": ["text[]"], "tokenization": "field"},
         {"name": "tasteText",   "dataType": ["text"]},
         {"name": "region",      "dataType": ["text"]},
-        {"name": "alcohol_pct", "dataType": ["number"], "moduleConfig": {"skip": True}},
-        {"name": "price_eur",   "dataType": ["number"], "moduleConfig": {"skip": True}},
-        {"name": "score",       "dataType": ["number"], "moduleConfig": {"skip": True}},
     ],
 }
 
-# Replace existing or create new
 if client.schema.contains(CLASS):
     client.schema.delete_class("Whisky")
-    print("ℹ️  Replaced existing Whisky class")
+    print("Replaced existing Whisky class")
 
 client.schema.create_class(CLASS)
-print("✅ Whisky class created with Snowflake m‑v1.5 embeddings")
+print("✅ Whisky class created with Snowflake embeddings")

@@ -11,7 +11,7 @@ class WhereOperand(BaseModel):
     @validator("operator")
     def _check_op(cls, v):
         allowed = {"Equal", "NotEqual", "LessThan", "LessThanEqual", "GreaterThan",
-                   "GreaterThanEqual", "ContainsAny", "ContainsAll"}
+                   "GreaterThanEqual", "ContainsAny", "ContainsAll", "Like"}
         if v not in allowed:
             raise ValueError(f"Operator {v} not supported")
         return v
