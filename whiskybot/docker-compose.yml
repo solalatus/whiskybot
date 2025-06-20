@@ -1,16 +1,18 @@
-
 version: "3.8"
+
 services:
-  app:
+  backend:
     build: .
     env_file: .env
     ports:
       - "8080:8080"
+
+  chainlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.chainlit
+    env_file: .env
+    ports:
+      - "3000:3000"
     depends_on:
-      - redis
-  redis:
-    image: redis:7
-    volumes:
-      - redis-data:/data
-volumes:
-  redis-data:
+      - backend
