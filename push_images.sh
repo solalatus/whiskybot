@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ $# -ne 1 ]; then
-  echo "Usage: $0 <image-tag>"
+# Default tag if none provided
+DEFAULT_TAG="v0.1"
+
+if [ $# -gt 1 ]; then
+  echo "Usage: $0 [<image-tag>]"
   exit 1
 fi
 
-TAG="$1"
+if [ $# -eq 1 ]; then
+  TAG="$1"
+else
+  TAG="$DEFAULT_TAG"
+fi
+
 REGION="eu-central-1"
 
 # Paths
