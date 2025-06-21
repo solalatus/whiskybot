@@ -154,9 +154,9 @@ def search_whisky(
     sort: Optional[Union[str, List[dict], List[SortDirective]]] = None,
     region: Optional[Union[str, List[str]]] = None,
 ):
-    """Search Whisky collection with hybrid/BM25 and optional client‑side sort.
-    With an explicit `sort` but *no* text query, we now skip BM25 entirely to avoid
-    Weaviate's "keyword search must have query" error.
+    """Search Whisky collection with hybrid/BM25 and optional server-side sort.
+    With an explicit `sort`, we now always push `with_sort` down to Weaviate,
+    even if the text query is empty (we skip BM25 when query is empty to avoid errors).
     """
 
     args = SearchArgs(
@@ -197,12 +197,16 @@ def search_whisky(
         q = q.with_where(where_combined)
 
     if args.sort:
-        # Only add BM25 when a query string is present
+        # only add BM25 when there's a non-empty text query
         if args.query.strip():
             q = q.with_bm25(query=args.query, properties=args.properties)
-        # else: rely solely on the where filter (no keyword search)
+        # always apply server-side sort directives
+        for directive in args.sort:  # type: ignore[attr-defined]
+            p = directive.path if isinstance(directive, SortDirective) else directive["path"]
+            o = directive.order if isinstance(directive, SortDirective) else directive["order"]
+            q = q.with_sort({"path": p, "order": o})
     else:
-        # hybrid path
+        # hybrid fallback when no explicit sort
         q = q.with_hybrid(query=args.query, alpha=args.alpha, properties=args.properties)
 
     q = q.with_additional(["distance", "explainScore"])
@@ -211,24 +215,7 @@ def search_whisky(
         raise RuntimeError(res["errors"])
     hits: List[dict] = res["data"]["Get"].get("Whisky", [])
 
-    # client‑side sort
-    if args.sort and hits:
-        def sort_key(doc: dict):
-            keys = []
-            for directive in args.sort:  # type: ignore[attr-defined]
-                p = directive["path"][0] if isinstance(directive, dict) else directive.path[0]
-                keys.append(doc.get(p))
-            return tuple(keys)
-
-        for directive in reversed(args.sort):
-            ascending = (
-                directive["order"] == "asc"
-                if isinstance(directive, dict)
-                else directive.order == "asc"
-            )
-            hits.sort(key=sort_key, reverse=not ascending)
-        hits = hits[: args.limit]
-
+    # now that Weaviate has sorted for us, just trim to limit
     return hits[: args.limit]
 
 
@@ -240,10 +227,31 @@ hybrid_product_search = StructuredTool.from_function(
     func=search_whisky,
     name="hybrid_product_search",
     description=(
-        "Whisky search. Supports `region` filter (values discovered at startup). Accepts "
-        "generic Weaviate `where`. If `sort` is given without a query, we return all items "
-        "matching filters and sort client‑side. If `sort` and query are given, we fetch a "
-        "larger candidate set via BM25 to sort afterwards."
+        "Whisky search. Supports `region` filter (values discovered at startup). "
+        "With `sort`, always issues server-side sort to Weaviate; when `query` is empty, "
+        "skips BM25 but still sorts. Otherwise uses hybrid ranking."
+        """Whisky class schema — available fields and their types:
+- name (text)
+- tasteNotes (text[])
+- tasteText (text)
+- region (text)
+- finish (text)
+- alcohol_pct (number)
+- num_reviewers (number)
+- aroma (text)
+- palate (text)
+- price_eur (number)
+- score (number)
+- maturation (text)
+- volume_ml (number)
+- distillery_status (text)
+- country (text)
+- variety (text)
+- description (text)
+- distillery (text)
+- founding_year (number)
+- origin_url (text)
+- contains_colouring (boolean)"""
     ),
 )
 
