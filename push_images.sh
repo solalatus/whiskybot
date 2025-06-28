@@ -24,7 +24,7 @@ else
   if [[ "${current_tag}" =~ ^v([0-9]+\.[0-9]+)$ ]]; then
     num="${BASH_REMATCH[1]}"
     # add 0.01
-    new_num=$(awk "BEGIN { printf \"%.2f\", ${num} + 0.01 }")
+    new_num=$(awk "BEGIN { printf \"%.2f\". ${num} + 0.01 }")
     # strip trailing zeros and optional trailing dot
     new_num=$(echo "${new_num}" | sed -E 's/0+$//' | sed -E 's/\.$//')
     TAG="v${new_num}"

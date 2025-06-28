@@ -380,3 +380,131 @@ New world whisky
 
 Distillery Pronunciation Guide
 Scotch Whisky Association
+
+
+
+The Sotch Whisky Research Institute (SWRI) tasting wheel
+========================================================
+
+Aroma categories (level 1), aromas (level 2), and examples (on level 3)
+
+- Primary tastes
+	- Sweet
+		- Sugar
+	- Sour
+		- Acids, Vinegar
+	- Bitter
+		- Tannins
+	- Salty
+		- See salt
+- Mouthfeel
+	- Mouth-warming
+		- Alcohol burn, fiery, tingle, prickle
+	- Mouth-coating
+		- Oily-feel, creamy-feel, viscous
+	- Astringent
+		- Mouth-drying, mouth-furring, chalky
+- Nasal effects
+	- Pungent
+		- Alcohol burn, nose-warming
+	- Prickle
+		- Tingle
+- Peaty
+	- Burnt
+		- Tar, char, ash
+	- Smoky
+		- Burning wood, smoked foods, barbeque, bonfire
+	- Medicinal
+		- Antiseptic, TCP, carbolic soap, first aid kit
+- Feinty
+	- Leather
+		- Horse saddle, leather upholstery, worn leather
+	- Tobacco
+		- Dried pipe tobacco, stale tobacco
+	- Sweaty
+- Cereal
+	- Dry cereals
+		- Malted barley, digestive biscuits, popcorn
+	- Wet cereals
+		- Mash, wort, malt extract, draff, porridge
+- Green / grassy
+	- Leafy
+		- Geranium leaves, freshly cut grass, tomato plants
+	- Herbal
+		- Fresh herbs, dried herbs
+	- Green vegetables
+		- Green peppers, fresh peas, cucumber, lettuce
+- Floral
+	- Fresh flowers
+		- Roses, violets, lavender
+	- Perfumed
+		- Fragrant, scented
+- Fruity
+	- Fresh fruit
+		- Apples, pears, bananas, tropical fruit
+	- Dried fruit
+		- Raisins, sultanas, prunes, dates, fruit cake
+	- Citrus
+		- Lemons, oranges, limes, grapefruit
+	- Artificial fruit flavourings
+		- Bubblegum, peradrops, candy, esters
+- Solventy
+	- Nail polish remover
+- Soapy
+	- Unperfumed soap
+- Sweet
+	- Vanilla
+		- Vanilla ice cream, custard
+	- Honey
+		- Honeycomb, sugar puffs
+	- Toffee
+		- Butterscotch, fudge, brown sugar, treacle
+- Woody
+	- Oaky
+		- Toasted oak
+	- New wood
+		- Sawdust, pencil sharpenings, resinous
+- Nutty
+	- Coconut
+		- Dessicated coconut, coconut milk, gorse flowers
+	- Nuts
+		- Almond, peanuts, brazil nuts, hazelnuts
+	- Toasted
+		- Burnt toast, cocoa, coffee, roasted beans
+- Spicy
+	- Peppery
+		- Black pepper
+	- Dried spice
+		- Clove, cinnamon, ginger, nutmeg
+- Oily
+	- Waxy
+		- Candles, wax crayons, beeswax
+	- Oils / fats
+		- Linseed oil, meat fat, greasy, engine oil, chip fat
+	- Buttery
+		- Melted butter, cream, dairy
+- Sour
+	- Vomit
+		- Baby sick, rancid
+	- Cheesy
+		- Blue cheese, mature cheddar, parmesan
+	- Vinegary
+		- Malt vinegar, acidic
+- Sulphury
+	- Meaty
+		- Beefy, bovril, marmite
+	- Decaying
+		- Rotten vegetables, rotten eggs, sweetcorn, boiled potatoes
+	- Struck match
+		- Gassy, spent fireworks
+	- Rubbery
+		- Tyres, rubber tubing, plimsols
+	- Cooked vegetables 
+		- Cabbage, brussels sprouts, sweetcorn, boiled potatoes
+- Stale
+	- Metallic
+		- Rust, wet iron, coins
+	- Musty
+		- Corked, damp wood, wet cardboard / paper
+	- Earthy
+		- Damp soil, mushrooms
